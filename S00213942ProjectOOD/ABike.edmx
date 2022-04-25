@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ABike.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ABikeStoreContainer">
+    <EntitySet Name="Frames" EntityType="ABike.Store.Frames" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Forks" EntityType="ABike.Store.Forks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Drivetrains" EntityType="ABike.Store.Drivetrains" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FrameFork" Association="ABike.Store.FrameFork">
+      <End Role="Frame" EntitySet="Frames" />
+      <End Role="Fork" EntitySet="Forks" />
+    </AssociationSet>
+    <AssociationSet Name="FrameDrivetrain" Association="ABike.Store.FrameDrivetrain">
+      <End Role="Frame" EntitySet="Frames" />
+      <End Role="Drivetrain" EntitySet="Drivetrains" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Frames">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Brand" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Discipline" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FrameImage" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Forks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Brand" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Size" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ForkImage" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FrameId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Drivetrains">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Brand" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Gears" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DriveImage" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FrameId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FrameFork">
+    <End Role="Frame" Type="ABike.Store.Frames" Multiplicity="1" />
+    <End Role="Fork" Type="ABike.Store.Forks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Frame">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Fork">
+        <PropertyRef Name="FrameId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FrameDrivetrain">
+    <End Role="Frame" Type="ABike.Store.Frames" Multiplicity="1" />
+    <End Role="Drivetrain" Type="ABike.Store.Drivetrains" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Frame">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Drivetrain">
+        <PropertyRef Name="FrameId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ABike" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ABikeContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Frames" EntityType="ABike.Frame" />
+          <EntitySet Name="Forks" EntityType="ABike.Fork" />
+          <EntitySet Name="Drivetrains" EntityType="ABike.Drivetrain" />
+          <AssociationSet Name="FrameFork" Association="ABike.FrameFork">
+            <End Role="Frame" EntitySet="Frames" />
+            <End Role="Fork" EntitySet="Forks" />
+          </AssociationSet>
+          <AssociationSet Name="FrameDrivetrain" Association="ABike.FrameDrivetrain">
+            <End Role="Frame" EntitySet="Frames" />
+            <End Role="Drivetrain" EntitySet="Drivetrains" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Frame">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Brand" Type="String" Nullable="false" />
+          <Property Name="Discipline" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Price" Type="String" Nullable="false" />
+          <Property Name="FrameImage" Type="String" Nullable="false" />
+          <NavigationProperty Name="Forks" Relationship="ABike.FrameFork" FromRole="Frame" ToRole="Fork" />
+          <NavigationProperty Name="Drivetrains" Relationship="ABike.FrameDrivetrain" FromRole="Frame" ToRole="Drivetrain" />
+        </EntityType>
+        <EntityType Name="Fork">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Brand" Type="String" Nullable="false" />
+          <Property Name="Size" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Price" Type="String" Nullable="false" />
+          <Property Name="ForkImage" Type="String" Nullable="false" />
+          <NavigationProperty Name="Frame" Relationship="ABike.FrameFork" FromRole="Fork" ToRole="Frame" />
+          <Property Name="FrameId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Drivetrain">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Brand" Type="String" Nullable="false" />
+          <Property Name="Gears" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Price" Type="String" Nullable="false" />
+          <Property Name="DriveImage" Type="String" Nullable="false" />
+          <NavigationProperty Name="Frame" Relationship="ABike.FrameDrivetrain" FromRole="Drivetrain" ToRole="Frame" />
+          <Property Name="FrameId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FrameFork">
+          <End Type="ABike.Frame" Role="Frame" Multiplicity="1" />
+          <End Type="ABike.Fork" Role="Fork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Frame">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fork">
+              <PropertyRef Name="FrameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FrameDrivetrain">
+          <End Type="ABike.Frame" Role="Frame" Multiplicity="1" />
+          <End Type="ABike.Drivetrain" Role="Drivetrain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Frame">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Drivetrain">
+              <PropertyRef Name="FrameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ABikeStoreContainer" CdmEntityContainer="ABikeContainer">
+    <EntitySetMapping Name="Frames">
+      <EntityTypeMapping TypeName="IsTypeOf(ABike.Frame)">
+        <MappingFragment StoreEntitySet="Frames">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Discipline" ColumnName="Discipline" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="FrameImage" ColumnName="FrameImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Forks">
+      <EntityTypeMapping TypeName="IsTypeOf(ABike.Fork)">
+        <MappingFragment StoreEntitySet="Forks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ForkImage" ColumnName="ForkImage" />
+          <ScalarProperty Name="FrameId" ColumnName="FrameId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Drivetrains">
+      <EntityTypeMapping TypeName="IsTypeOf(ABike.Drivetrain)">
+        <MappingFragment StoreEntitySet="Drivetrains">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Gears" ColumnName="Gears" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="DriveImage" ColumnName="DriveImage" />
+          <ScalarProperty Name="FrameId" ColumnName="FrameId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

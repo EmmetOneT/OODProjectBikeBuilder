@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ae4d79514ef244dcab8bf1fedb1ac37d" Name="Diagram1" >
+        <EntityTypeShape EntityType="Bikes.Frame" Width="1.5" PointX="2.5" PointY="1.375" />
+        <EntityTypeShape EntityType="Bikes.Fork" Width="1.5" PointX="4.875" PointY="4.125" />
+        <EntityTypeShape EntityType="Bikes.Drivetrain" Width="1.5" PointX="2.75" PointY="6" />
+        <AssociationConnector Association="Bikes.FrameFork" />
+        <AssociationConnector Association="Bikes.FrameDrivetrain" />
+        <EntityTypeShape EntityType="Bikes.Drivetrain1" Width="1.5" PointX="9.625" PointY="4.25" />
+        <EntityTypeShape EntityType="Bikes.Fork1" Width="1.5" PointX="9.625" PointY="1.125" />
+        <EntityTypeShape EntityType="Bikes.Frame1" Width="1.5" PointX="7.375" PointY="2.625" />
+        <AssociationConnector Association="Bikes.FK_FrameDrivetrain" />
+        <AssociationConnector Association="Bikes.FK_FrameFork" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
