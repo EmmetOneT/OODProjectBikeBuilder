@@ -21,24 +21,31 @@
 
         <Label Content="Bike Brand" HorizontalAlignment="Left" Margin="86,100,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Times New Roman"/>
         <ListBox x:Name="lbxFrame" HorizontalAlignment="Left" Height="60" Margin="28,140,0,0" VerticalAlignment="Top" Width="223"  SelectionChanged="lbxFrame_SelectionChanged"/>
-        
+
         <Label Content="Fork" HorizontalAlignment="Left" Margin="109,200,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Times New Roman"/>
         <ListBox x:Name="lbxFork" HorizontalAlignment="Left" Height="60" Margin="28,235,0,0" VerticalAlignment="Top" Width="223" SelectionChanged="lbxFork_SelectionChanged" />
-        
+
         <Label Content="Drivetrain" HorizontalAlignment="Left" Margin="93,300,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Times New Roman"/>
         <ListBox x:Name="lbxDrive" HorizontalAlignment="Left" Height="60" Margin="28,331,0,0" VerticalAlignment="Top" Width="223" SelectionChanged="lbxDrive_SelectionChanged" />
 
         <Label Content="Part Information" HorizontalAlignment="Left" Margin="406,100,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Times New Roman"/>
-        <TextBlock x:Name="tbPartInfo" HorizontalAlignment="Left" Width="510" Margin="272,140,0,239" FontSize="16" FontFamily="Times New Roman"/>
-        <TextBlock x:Name="tbOtherInfo" HorizontalAlignment="Left" Width="170" Margin="272,185,0,205" FontSize="16" FontFamily="Times New Roman"/>
-        <TextBlock x:Name="tbPriceInfo" HorizontalAlignment="Left" Width="161" Margin="467,185,0,203" FontSize="16" FontFamily="Times New Roman"/>
+        <TextBlock x:Name="tbPartInfo" HorizontalAlignment="Left" Width="373" Margin="272,140,0,210" FontSize="16" FontFamily="Times New Roman" TextWrapping="Wrap"/>
 
-        <Button Content="Add To Basket" Width="100" Height="30" Name="AddButton" Click="AddButton_Click" Margin="313,250,379,139"/>
-        <Button Content="Remove From Basket" Width="100" Height="30" Name="RemoveButton" Click="RemoveButton_Click" Margin="313,300,379,89"/>
+        <Button Content="Add To Basket" Height="30" Name="AddButton" Click="AddButton_Click" Margin="279,250,379,139"/>
+        <Button Content="Remove From Basket" Height="30" Name="RemoveButton" Click="RemoveButton_Click" Margin="279,300,379,89"/>
 
         <Label Content="Basket" HorizontalAlignment="Left" Margin="633,214,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Times New Roman"/>
         <ListBox x:Name="lbxBasket" HorizontalAlignment="Left" Height="81" Margin="437,250,0,0" VerticalAlignment="Top" Width="345" SelectionChanged="lbxBasket_SelectionChanged" />
-        <Label Content="Total: €" HorizontalAlignment="Left" Margin="615,340,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Times New Roman" Width="135"/>
-        
+        <RadioButton Content="Cross Country" HorizontalAlignment="Left" Margin="28,74,0,0" VerticalAlignment="Top" Click="RadioButton_Click"/>
+        <RadioButton Content="Downhill" HorizontalAlignment="Left" Margin="28,54,0,0" VerticalAlignment="Top" Click="RadioButton_Click"/>
+        <RadioButton Content="Trail" HorizontalAlignment="Left" Margin="28,34,0,0" VerticalAlignment="Top" Click="RadioButton_Click"/>
+        <RadioButton Content="All Disciplines" HorizontalAlignment="Left" Margin="28,14,0,0" VerticalAlignment="Top" Click="RadioButton_Click"/>
+
+        <Image  x:Name="imgPart" HorizontalAlignment="Left" Height="116" Margin="650,100,0,0" VerticalAlignment="Top" Width="132"/>
+        <TextBlock x:Name="tbTotalCost" HorizontalAlignment="Left" Margin="576,357,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Label Content="Total basket €" HorizontalAlignment="Left" Margin="493,352,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnSave" Content="Print Receipt" HorizontalAlignment="Left" Margin="576,384,0,0" VerticalAlignment="Top" Width="75" Click="btnSave_Click"/>
+
+
     </Grid>
 </Window>
